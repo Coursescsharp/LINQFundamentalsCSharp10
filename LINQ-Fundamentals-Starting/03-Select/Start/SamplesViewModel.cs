@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection.Metadata;
+using System.Text;
 
 namespace LINQSamples
 {
@@ -79,10 +80,17 @@ namespace LINQSamples
         public List<Product> GetSpecificColumnsQuery()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    select new Product
+                    {
+                        ProductID = product.ProductID,
+                        Name = product.Name,
+                        Size = product.Size,
+                    })
+                    .ToList();
 
             return list;
         }
@@ -95,7 +103,14 @@ namespace LINQSamples
         public List<Product> GetSpecificColumnsMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list = products
+                .Select(product => new Product
+                {
+                    ProductID = product.ProductID,
+                    Name = product.Name,
+                    Size = product.Size,
+                })
+                .ToList();
 
             // Write Method Syntax Here
 
