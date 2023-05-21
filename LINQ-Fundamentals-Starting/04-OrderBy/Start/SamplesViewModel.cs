@@ -47,10 +47,13 @@
         public List<Product> OrderByDescendingQuery()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    orderby product.ListPrice descending
+                    select product)
+                    .ToList();
 
             return list;
         }
@@ -63,10 +66,12 @@
         public List<Product> OrderByDescendingMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Method Syntax Here
-
+            list = products
+                .OrderByDescending(product => product.Name)
+                .ToList();
 
             return list;
         }
