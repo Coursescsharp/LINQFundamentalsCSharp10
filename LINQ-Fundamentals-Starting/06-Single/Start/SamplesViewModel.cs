@@ -16,11 +16,14 @@ namespace LINQSamples
             List<Product> products = GetProducts();
             
             // Write Query Syntax Here
-            Product value = (from product in products
-                             select product)
-                             .First(product => product.Color == "Red");
+            //Product value = (from product in products
+            //                 select product)
+            //                 .First(product => product.Color == "Red");
 
             // Test the exception handling
+            Product value = (from product in products
+                     select product)
+                             .First(product => product.Color == "Purple");
 
             return value;
         }
@@ -54,11 +57,19 @@ namespace LINQSamples
         public Product FirstOrDefaultQuery()
         {
             List<Product> products = GetProducts();
-            Product value = null;
-
-            // Write Query Syntax Here
+            Product value = (from product in products
+                             select product)
+                             .FirstOrDefault(product => product.Color == "Purple",
+                             new Product
+                             {
+                                 ProductID = -1,
+                                 Name = "NOT FOUND"
+                             });
 
             // Test the exception handling
+            //Product value = (from product in products
+            //                 select product)
+            //                 .FirstOrDefault(product => product.Color == "Purple");
 
             return value;
         }
@@ -74,9 +85,15 @@ namespace LINQSamples
         public Product FirstOrDefaultMethod()
         {
             List<Product> products = GetProducts();
-            Product value = null;
-
+            
             // Write Method Syntax Here
+            Product value = products.FirstOrDefault(product => product.Color == "Red",
+                new Product
+                {
+                    ProductID = -1,
+                    Name = "NOT FOUND"
+                });
+
 
             return value;
         }
