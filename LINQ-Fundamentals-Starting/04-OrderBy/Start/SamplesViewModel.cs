@@ -51,7 +51,7 @@
 
             // Write Query Syntax Here
             list = (from product in products
-                    orderby product.ListPrice descending
+                    orderby product.Name descending
                     select product)
                     .ToList();
 
