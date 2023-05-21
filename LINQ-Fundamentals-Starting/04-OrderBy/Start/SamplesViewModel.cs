@@ -84,10 +84,14 @@
         public List<Product> OrderByTwoFieldsQuery()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    orderby product.Color descending,
+                    product.Name
+                    select product)
+                    .ToList();
 
             return list;
         }
@@ -100,10 +104,13 @@
         public List<Product> OrderByTwoFieldsMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Method Syntax Here
-
+            list = products
+                .OrderByDescending(product => product.Color)
+                .ThenBy(product => product.Name)
+                .ToList();
 
             return list;
         }
@@ -119,7 +126,10 @@
             List<Product> list = new();
 
             // Write Method Syntax Here
-
+            list = products
+                .OrderByDescending(product => product.Color)
+                .ThenByDescending(product => product.Name)
+                .ToList();
 
             return list;
         }
