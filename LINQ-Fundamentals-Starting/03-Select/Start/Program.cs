@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.GetSpecificColumnsMethod();
+var result = vm.AnonymousClassMethod();
 
 // Display Results
 vm.Display(result);

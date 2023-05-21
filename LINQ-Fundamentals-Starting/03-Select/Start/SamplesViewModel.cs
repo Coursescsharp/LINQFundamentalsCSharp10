@@ -129,15 +129,21 @@ namespace LINQSamples
             StringBuilder sb = new(2048);
 
             // Write Query Syntax Here
-
+            var list = (from prod in products
+                        select new
+                        {
+                            Identifier = prod.ProductID,
+                            ProductName = prod.Name,
+                            ProductSize = prod.Size
+                        });
 
             // Loop through anonymous class
-            //foreach (var prod in list)
-            //{
-            //  sb.AppendLine($"Product ID: {prod.Identifier}");
-            //  sb.AppendLine($"   Product Name: {prod.ProductName}");
-            //  sb.AppendLine($"   Product Size: {prod.ProductSize}");
-            //}
+            foreach (var prod in list)
+            {
+                sb.AppendLine($"Product ID: {prod.Identifier}");
+                sb.AppendLine($"   Product Name: {prod.ProductName}");
+                sb.AppendLine($"   Product Size: {prod.ProductSize}");
+            }
 
             return sb.ToString();
         }
@@ -153,15 +159,20 @@ namespace LINQSamples
             StringBuilder sb = new(2048);
 
             // Write Method Syntax Here
-
+            var list = products.Select(prod => new 
+            {
+                Identifier = prod.ProductID,
+                ProductName = prod.Name,
+                ProductSize = prod.Size
+            });
 
             // Loop through anonymous class
-            //foreach (var prod in list)
-            //{
-            //  sb.AppendLine($"Product ID: {prod.Identifier}");
-            //  sb.AppendLine($"   Product Name: {prod.ProductName}");
-            //  sb.AppendLine($"   Product Size: {prod.ProductSize}");
-            //}
+            foreach (var prod in list)
+            {
+                sb.AppendLine($"Product ID: {prod.Identifier}");
+                sb.AppendLine($"   Product Name: {prod.ProductName}");
+                sb.AppendLine($"   Product Size: {prod.ProductSize}");
+            }
 
             return sb.ToString();
         }
