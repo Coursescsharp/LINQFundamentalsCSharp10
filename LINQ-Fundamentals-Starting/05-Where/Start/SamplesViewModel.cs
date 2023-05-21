@@ -49,7 +49,11 @@
             List<Product> list = new();
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    where product.Name.StartsWith("L") &&
+                    product.StandardCost > 200
+                    select product)
+                    .ToList();
 
             return list;
         }
@@ -62,9 +66,12 @@
         public List<Product> WhereTwoFieldsMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Method Syntax Here
+            list = products
+                .Where(product => product.Name.StartsWith("L") && product.StandardCost > 200)                
+                .ToList();
 
 
             return list;
