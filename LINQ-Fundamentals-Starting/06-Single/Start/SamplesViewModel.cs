@@ -224,10 +224,14 @@ namespace LINQSamples
             Product value = null;
 
             // Write Query Syntax Here
+            //value = (from product in products select product).Single(product => product.ProductID == 706);
 
             // Test the exception handling for finding multiple values
+            //value = (from product in products select product).Single(product => product.Color == "Red");
 
             // Test the exception handling for the list is null
+            products = null;
+            value = (from product in products select product).Single(product => product.ProductID == 706);
 
             return value;
         }
@@ -245,6 +249,7 @@ namespace LINQSamples
             Product value = null;
 
             // Write Method Syntax Here
+            value = products.Single(product => product.ProductID == 706);
 
             return value;
         }
@@ -262,17 +267,28 @@ namespace LINQSamples
             Product value = null;
 
             // Write Query Syntax Here
+            // value = (from product in products select product).SingleOrDefault(product => product.ProductID == 706);
 
 
             // Test the exception handling for finding multiple values
-
+            // value = (from product in products select product).SingleOrDefault(product => product.Color == "Red");
 
             // Test the exception handling for the list is empty
+            //products.Clear();
+            //value = (from product in products select product).SingleOrDefault(product => product.ProductID == 706);
 
             // Test the exception handling for the list is empty and a default value is supplied
+            //products.Clear();
+            //value = (from product in products select product).SingleOrDefault(product => product.ProductID == 706,
+            //    new Product
+            //    {
+            //        ProductID = -1,
+            //        Name = "NOT PRODUCT FOUND"
+            //    });
 
             // Test the exception handling for the list is null
-
+            products = null;
+            value = (from product in products select product).SingleOrDefault(product => product.ProductID == 706);
 
             return value;
         }
