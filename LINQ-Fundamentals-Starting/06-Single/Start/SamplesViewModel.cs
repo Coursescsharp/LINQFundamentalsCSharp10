@@ -145,11 +145,14 @@ namespace LINQSamples
         public Product LastQuery()
         {
             List<Product> products = GetProducts();
-            Product value = null;
+
+            Product value;
 
             // Write Query Syntax Here
+            // value = (from product in products select product).Last(product => product.Color == "Red");
 
             // Test the exception handling
+            value = (from product in products select product).Last(product => product.Color == "Purple");
 
             return value;
         }
@@ -166,7 +169,7 @@ namespace LINQSamples
             Product value = null;
 
             // Write Method Syntax Here
-
+            value = products.Last(product => product.Color == "Red");
 
             return value;
         }
@@ -183,9 +186,10 @@ namespace LINQSamples
             Product value = null;
 
             // Write Query Syntax Here
-
+            //value = (from product in products select product).LastOrDefault(product => product.Color == "Red");
 
             // Test the exception handling
+            value = (from product in products select product).LastOrDefault(product => product.Color == "Purple");
 
             return value;
         }
@@ -202,7 +206,7 @@ namespace LINQSamples
             Product value = null;
 
             // Write Method Syntax Here
-
+            value = products.LastOrDefault(product => product.Color == "Red");
 
             return value;
         }
