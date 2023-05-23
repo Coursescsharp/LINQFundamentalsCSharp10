@@ -239,10 +239,14 @@
         public List<Product> DistinctByQuery()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    select product)
+                    .DistinctBy(product => product.Color)
+                    .OrderBy(product => product.Color)
+                    .ToList();
 
             return list;
         }
@@ -254,8 +258,10 @@
             List<Product> products = GetProducts();
             List<Product> list = new();
 
-            // Write Method Syntax Here
-
+            list = products
+                .DistinctBy(product => product.Color)
+                .OrderBy(product => product.Color)
+                .ToList();
 
             return list;
         }
