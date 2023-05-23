@@ -15,7 +15,7 @@ Take n elements / Skip n elements
 These methods are used to perform partitioning operations where we might take a certain amount of elements from the front, or we might skip a certain amount of elements from the front of a collection.
 
 Take() - Use Take() to select a specified number of items from the beginning of a collection
-TakeRange() - Use a range operator
+TakeRange() - Use a range operator. It allows to specify the start and the end of a range.
 TakeWhile() - Use TakeWhile() to select a specified number of items from the beginning of a collection based on a true condition
 Skip() - Use Skip() to move past a specified number of items from the beginning of a collection
 SkipWhile() - Use SkipWhile() to move past a specified number of items from the beginning of a collection based on a true condition

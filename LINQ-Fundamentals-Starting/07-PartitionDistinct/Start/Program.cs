@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.TakeMethod();
+var result = vm.TakeRangeMethod();
 
 // Display Results
 vm.Display(result);

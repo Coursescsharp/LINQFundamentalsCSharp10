@@ -46,10 +46,12 @@
         public List<Product> TakeRangeQuery()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    orderby product.Name
+                    select product).Take(5..8).ToList();
 
             return list;
         }
@@ -62,10 +64,13 @@
         public List<Product> TakeRangeMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = products
+                .OrderBy(product => product.Name)
+                .Take(5..8)
+                .ToList();
 
             return list;
         }
