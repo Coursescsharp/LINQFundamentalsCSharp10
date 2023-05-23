@@ -9,7 +9,7 @@
         public List<Product> TakeQuery()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
             list = (from product in products 
@@ -27,10 +27,13 @@
         public List<Product> TakeMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = products
+                .Take(5)
+                .OrderBy(product => product.Name)
+                .ToList();
 
             return list;
         }
