@@ -83,10 +83,14 @@
         public List<Product> TakeWhileQuery()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    orderby product.Name
+                    select product)
+                    .TakeWhile(p => p.Name.StartsWith("A"))
+                    .ToList();
 
             return list;
         }
@@ -99,10 +103,13 @@
         public List<Product> TakeWhileMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
-            // Write Method Syntax Here
-
+            // Write Query Syntax Here
+            list = products
+                .OrderBy(product => product.Name)
+                .TakeWhile(p => p.Name.StartsWith("A"))
+                .ToList();
 
             return list;
         }
