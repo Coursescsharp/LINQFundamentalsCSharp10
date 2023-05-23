@@ -31,8 +31,8 @@
 
             // Write Query Syntax Here
             list = products
-                .Take(5)
                 .OrderBy(product => product.Name)
+                .Take(5)
                 .ToList();
 
             return list;
