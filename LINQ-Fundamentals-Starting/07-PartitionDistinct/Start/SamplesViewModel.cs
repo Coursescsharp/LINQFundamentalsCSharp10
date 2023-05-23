@@ -69,7 +69,7 @@
             // Write Query Syntax Here
             list = products
                 .OrderBy(product => product.Name)
-                .Take(5..8)
+                .Take(10..)
                 .ToList();
 
             return list;
