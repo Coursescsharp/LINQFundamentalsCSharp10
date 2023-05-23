@@ -122,10 +122,14 @@
         public List<Product> SkipQuery()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    orderby product.Name
+                    select product)
+                    .Skip(5)
+                    .ToList();
 
             return list;
         }
@@ -138,10 +142,13 @@
         public List<Product> SkipMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             // Write Method Syntax Here
-
+            list = products
+                .OrderBy(product => product.Name)
+                .Skip(5)
+                .ToList();
 
             return list;
         }
