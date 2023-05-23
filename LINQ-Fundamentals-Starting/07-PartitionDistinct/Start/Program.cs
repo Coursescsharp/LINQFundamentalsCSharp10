@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.SkipWhileMethod();
+var result = vm.DistinctWhere();
 
 // Display Results
 vm.Display(result);
