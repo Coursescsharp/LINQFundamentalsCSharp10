@@ -256,7 +256,7 @@
         public List<Product> DistinctByMethod()
         {
             List<Product> products = GetProducts();
-            List<Product> list = new();
+            List<Product> list;
 
             list = products
                 .DistinctBy(product => product.Color)
@@ -274,10 +274,13 @@
         public List<Product[]> ChunkQuery()
         {
             List<Product> products = GetProducts();
-            List<Product[]> list = new();
+            List<Product[]> list;
 
             // Write Query Syntax Here
-
+            list = (from product in products 
+                    select product)
+                    .Chunk(5)
+                    .ToList();
 
             return list;
         }
@@ -290,10 +293,11 @@
         public List<Product[]> ChunkMethod()
         {
             List<Product> products = GetProducts();
-            List<Product[]> list = new();
+            List<Product[]> list;
 
-            // Write Method Syntax Here
-
+            list = products
+                .Chunk(5)
+                .ToList();
 
             return list;
         }

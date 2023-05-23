@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.DistinctByMethod();
+var result = vm.ChunkMethod();
 
 // Display Results
 vm.Display(result);
