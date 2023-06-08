@@ -207,7 +207,10 @@
             List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
             // Write Query Syntax Here
-
+            list = (from prod in products
+                    select prod.ProductID)
+                    .Except(from sale in sales select sale.ProductID)
+                    .ToList();
 
             return list;
         }
@@ -224,7 +227,8 @@
             List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
             // Write Method Syntax Here
-
+            list = products.Select(p => p.ProductID).Except(sales.Select(s => s.ProductID))
+                    .ToList();
 
             return list;
         }
