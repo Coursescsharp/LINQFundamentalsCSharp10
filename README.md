@@ -9,5 +9,6 @@ The **LINQHandsOn.zip** contains the unit tests to check your knowledge after ea
 * Compares two collections for equality => Simple data types (int, decimal, etc) - check values
 * Object data types checks reference    => Use comparer class to check values in properties
 
+# Using Except() with integer collections
 
-
+Find all values in one list, but not the other one. Returns the list of exceptions.
