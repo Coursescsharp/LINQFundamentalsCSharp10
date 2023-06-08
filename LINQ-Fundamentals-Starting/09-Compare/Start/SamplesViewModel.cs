@@ -123,7 +123,9 @@
             //list1.RemoveAt(0);
 
             // Write Query Syntax Here
-
+            value = (from prod in list1
+                     select prod)
+                     .SequenceEqual(list2, pc);
 
             return value;
         }
