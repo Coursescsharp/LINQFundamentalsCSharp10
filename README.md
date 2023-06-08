@@ -4,6 +4,10 @@ The **LINQ-Fundamentals-Starting.zip** contains the Start folders for each modul
 
 The **LINQHandsOn.zip** contains the unit tests to check your knowledge after each module.
 
-# Determine the type of data contained within collections
+# Using SequenceEquals() with Integer collections
+
+* Compares two collections for equality => Simple data types (int, decimal, etc) - check values
+* Object data types checks reference    => Use comparer class to check values in properties
+
 
 
