@@ -12,3 +12,9 @@ The **LINQHandsOn.zip** contains the unit tests to check your knowledge after ea
 # Using Except() with integer collections
 
 Find all values in one list, but not the other one. Returns the list of exceptions.
+
+# Using the ExceptBy() method
+
+Find all values in one list, but not the other and returns the list of objects that are different.
+
+**We don't need a comparer class to use it**.
