@@ -114,7 +114,9 @@
             bool value = false;
 
             // Write Query Syntax Here
-
+            value = (from num in numbers
+                     select num)
+                     .Contains(3);
 
             return value;
         }
@@ -130,7 +132,7 @@
             bool value = false;
 
             // Write Method Syntax Here
-
+            value = numbers.Contains(3);
 
             return value;
         }
