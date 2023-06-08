@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.ExceptProductSalesMethod();
+var result = vm.ExceptUsingComparerMethod();
 
 // Display Results
 vm.Display(result);
