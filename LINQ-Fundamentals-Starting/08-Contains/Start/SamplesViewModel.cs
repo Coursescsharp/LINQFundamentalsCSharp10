@@ -80,7 +80,9 @@
             bool value = false;
 
             // Write Query Syntax Here
-
+            value = (from sale in sales
+                     select sale)
+                     .Any(sale => sale.LineTotal > 1000);
 
             return value;
         }
@@ -96,7 +98,7 @@
             bool value = false;
 
             // Write Method Syntax Here
-
+            value = sales.Any(sale => sale.LineTotal > 1000);
 
             return value;
         }
