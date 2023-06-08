@@ -18,3 +18,20 @@ Find all values in one list, but not the other one. Returns the list of exceptio
 Find all values in one list, but not the other and returns the list of objects that are different.
 
 **We don't need a comparer class to use it**.
+
+By default, the key expression used for ExceptBy() is string, and if we want to change that, then we have to pass two parameters to this generic
+method: 
+
+* One is the type of things that are going to be in this collection.
+* The second is the data type of the key expression.
+
+```
+List<Product> list = null;
+List<Product> products = ProductRepository.GetAll();
+List<SalesOrder> sales = SalesOrderRepository.GetAll();
+
+// Write Method Syntax Here
+list = products
+    .ExceptBy<Product, int>(sales.Select(s => s.ProductID), p => p.ProductID)
+    .ToList();
+```
