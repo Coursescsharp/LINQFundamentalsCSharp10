@@ -35,3 +35,7 @@ list = products
     .ExceptBy<Product, int>(sales.Select(s => s.ProductID), p => p.ProductID)
     .ToList();
 ```
+
+# Using Intersect()
+
+This method allows to find all values in common between two lists (it's the opposite of Excep()).

@@ -386,7 +386,10 @@
             List<int> list2 = new() { 3, 4, 5 };
 
             // Write Query Syntax Here
-
+            list = (from num in list1
+                    select num)
+                    .Intersect(list2)
+                    .ToList();
 
             return list;
         }
@@ -405,7 +408,9 @@
             List<int> list2 = new() { 3, 4, 5 };
 
             // Write Method Syntax Here
-
+            list = list1
+                .Intersect(list2)
+                .ToList();
 
             return list;
         }
@@ -422,7 +427,10 @@
             List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
             // Write Query Syntax Here
-
+            list = (from prod in products
+                    select prod.ProductID)
+                    .Intersect(from sale in sales select sale.ProductID)
+                    .ToList();
 
             return list;
         }
@@ -439,7 +447,10 @@
             List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
             // Write Method Syntax Here
-
+            list = products
+                .Select(prod => prod.ProductID)
+                .Intersect(sales.Select(s => s.ProductID))
+                .ToList();
 
             return list;
         }
@@ -464,7 +475,10 @@
             list2.RemoveAll(prod => prod.Color == "Red");
 
             // Write Query Syntax Here
-
+            list = (from product in list1
+                    select product)
+                    .Intersect(list2, pc)
+                    .ToList();
 
             return list;
         }
@@ -489,7 +503,9 @@
             list2.RemoveAll(prod => prod.Color == "Red");
 
             // Write Method Syntax Here
-
+            list = list1
+                .Intersect(list2, pc)
+                .ToList();
 
             return list;
         }
@@ -508,7 +524,10 @@
             List<string> colors = new() { "Red", "Black" };
 
             // Write Query Syntax Here
-
+            list = (from prod in products
+                    select prod)
+                    .IntersectBy(from c in colors select c, p => p.Color)
+                    .ToList();
 
             return list;
         }
@@ -527,7 +546,9 @@
             List<string> colors = new() { "Red", "Black" };
 
             // Write Method Syntax Here
-
+            list = products
+                .IntersectBy(colors, p => p.Color)
+                    .ToList();
 
             return list;
         }
@@ -545,7 +566,10 @@
             List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
             // Write Query Syntax Here
-
+            list = (from prod in products
+                    select prod)
+                    .IntersectBy<Product, int>(from sale in sales select sale.ProductID, p => p.ProductID)
+                    .ToList();
 
             return list;
         }
@@ -563,7 +587,9 @@
             List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
             // Write Method Syntax Here
-
+            list = products
+                .IntersectBy<Product, int>(sales.Select(s => s.ProductID), p => p.ProductID)
+                .ToList();
 
             return list;
         }

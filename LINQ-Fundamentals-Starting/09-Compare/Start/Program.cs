@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.ExceptByProductSalesMethod();
+var result = vm.IntersectByProductSalesMethod();
 
 // Display Results
 vm.Display(result);
