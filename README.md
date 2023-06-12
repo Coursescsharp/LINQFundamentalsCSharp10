@@ -107,6 +107,44 @@ list = products
 .ToList();
 ```
 
-
 * Create a one-to-many using group join
+
+We'll try to create a new object with Sales collection for each Product. For this, the query syntax uses 'join' and 'into' keywords.
+The method syntax uses **GroupJoin()**.
+
+```
+list = (from product in products
+        orderby product.ProductID
+        join sale in sales
+        on product.ProductID equals sale.ProductID
+        into newSales
+        select new ProductSales 
+        {
+            Product = product,
+            Sales = newSales.OrderBy(s => s.SalesOrderID).ToList()
+        })
+        .ToList();
+```
+
+Using the **into** keyword, the query takes the sales collection for each product and puts it into the **newSales** variable. With that, we're in order to create the ProductSales instance.
+
+If we use, instead, the method syntax, we need to use the GroupJoin() method:
+
+```
+list = products
+    .GroupJoin(
+        sales,
+        product => product.ProductID,
+        sale => sale.ProductID,
+        (product, salesGroup) => new ProductSales
+        {
+            Product = product,
+            Sales = salesGroup.OrderBy(s => s.SalesOrderID).ToList()
+        }
+    )
+    .ToList();
+```
+
+In the above example, the result selector includes grouped collection salesGroup.
+
 * Simulate a left outer join
