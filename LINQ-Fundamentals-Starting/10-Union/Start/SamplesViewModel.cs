@@ -203,7 +203,11 @@
             List<Product> list2 = ProductRepository.GetAll();
 
             // Write Query Syntax Here
-
+            list = (from product in list1
+                    select product)
+                    .Concat(list2)
+                    .OrderBy(product => product.Name)
+                    .ToList();
 
             return list;
         }
@@ -223,7 +227,10 @@
             List<Product> list2 = ProductRepository.GetAll();
 
             // Write Method Syntax Here
-
+            list = list1
+                    .Concat(list2)
+                    .OrderBy(product => product.Name)
+                    .ToList();
 
             return list;
         }
