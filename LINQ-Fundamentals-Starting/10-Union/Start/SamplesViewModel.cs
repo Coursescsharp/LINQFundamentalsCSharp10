@@ -111,7 +111,11 @@
             List<Product> list2 = ProductRepository.GetAll();
 
             // Write Query Syntax Here
-
+            list = (from product in list1
+                    select product)
+                    .UnionBy(list2, product => product.Color)
+                    .OrderBy(product => product.Name)
+                    .ToList();
 
             return list;
         }
@@ -130,7 +134,9 @@
             List<Product> list2 = ProductRepository.GetAll();
 
             // Write Method Syntax Here
-
+            list = list1.UnionBy(list2, product => product.Color)
+                    .OrderBy(product => product.Name)
+                    .ToList();
 
             return list;
         }
