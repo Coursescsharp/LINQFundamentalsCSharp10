@@ -200,3 +200,36 @@ list = products
         })
         .ToList();
 ```
+
+# Use the Group clause to produce grouped collections
+
+Using the query syntax we need to use the **group** and **by** keywords:
+
+```
+List<IGrouping<string, Product>> list = null;
+
+// Load all Product Data
+List<Product> products = ProductRepository.GetAll();
+
+// Write Query Syntax Here
+list = (from product in products
+        orderby product.Size
+        group product by product.Size)
+        .ToList();
+```
+
+Using the method sytnax:
+
+```
+List<IGrouping<string, Product>> list = null;
+
+// Load all Product Data
+List<Product> products = ProductRepository.GetAll();
+
+// Write Method Syntax Here
+list = products
+    .OrderBy(product => product.Key)
+    .GroupBy(product => product.Size)
+    .ToList();
+```
+
