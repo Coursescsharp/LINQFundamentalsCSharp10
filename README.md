@@ -48,17 +48,18 @@ This method allows to find all values in common between two lists (it's the oppo
 
 # Using the Join cluase to combine two collections
 
-* Perform an equijoin (inner join) between two or three collections
-    - At least one property in each collection must share equal values
-    - Using the **Join** method we need to specify the following parameters:
-        * Outer sequence -> From the query starts
-        * Inner sequence
-        * outerKeySelector 
-                            -> This two parameters are used to specify a filed whose value should be mach using lambda expression in order to include element in the result.
-        * innerKeySelector
-        * result selector -> Used to formulate the result
+## Perform an equijoin (inner join) between two or three collections
 
-Using a two-field for the inner join:
+- At least one property in each collection must share equal values
+- Using the **Join** method we need to specify the following parameters:
+    * Outer sequence -> From the query starts
+    * Inner sequence
+    * outerKeySelector 
+                        -> This two parameters are used to specify a filed whose value should be mach using lambda expression in order to include element in the result.
+    * innerKeySelector
+    * result selector -> Used to formulate the result
+
+## Using a two-field for the inner join:
 
 ```
 list = (from product in products
@@ -85,7 +86,7 @@ Here, the **on**, instead of a single field, we need to create an anonymous clas
 
 "product.ProductId = sale.ProductID AND Qty = sale.OrderQty"
 
-Using the LING methods instead:
+Using the LINQ methods instead:
 
 ```
 list = products                            
@@ -107,7 +108,7 @@ list = products
 .ToList();
 ```
 
-* Create a one-to-many using group join
+## Create a one-to-many using group join
 
 We'll try to create a new object with Sales collection for each Product. For this, the query syntax uses 'join' and 'into' keywords.
 The method syntax uses **GroupJoin()**.
@@ -147,4 +148,55 @@ list = products
 
 In the above example, the result selector includes grouped collection salesGroup.
 
-* Simulate a left outer join
+## Simulate a left outer join using query syntax
+
+We'll use an inner join using 'into' and a second 'from' statement.
+Now, a null object may be returned fro the right collection that we get back from the from, so we'll use DefaultIfEmpty method to give us an empty object if there is nothing that matches in the right collection.
+
+```
+list = (from product in products
+        join sale in sales
+        on product.ProductID equals sale.ProductID
+        into newSales
+        from sale in newSales.DefaultIfEmpty()
+        select new ProductOrder
+        {
+            ProductID = product.ProductID,
+            Name = product.Name,
+            Color = product.Color,
+            StandardCost = product.StandardCost,
+            ListPrice = product.ListPrice,
+            Size = product.Size,
+            SalesOrderID = sale?.SalesOrderID,  // use the null-conditional operator
+            OrderQty = sale?.OrderQty,
+            LineTotal = sale?.LineTotal,
+        })
+        .OrderBy(p => p.Name)
+        .ToList();
+```
+
+We're putting the join result into newSales, so that means "give me all the sales for that ProductID".
+Then, we add on an extra from (if the product has sales, that newSales has data). So, we can create a new ProductOrder instance.
+
+## Simulate a left outer join using method syntax
+
+For this, we gonna use the **SelectMany()** method to select the 'right' collection. 
+We're going to use the **Where** method to filter what is selected in 'right' collection, and finally, we're goint to use **DefaultIfEmpty()** method for 'right' collection.
+
+```
+list = products
+        .SelectMany(product => sales.Where(s => s.ProductID == product.ProductID).DefaultIfEmpty(),
+        (product, sale) => new ProductOrder
+        {
+            ProductID = product.ProductID,
+            Name = product.Name,
+            Color = product.Color,
+            StandardCost = product.StandardCost,
+            ListPrice = product.ListPrice,
+            Size = product.Size,
+            SalesOrderID = sale?.SalesOrderID,  // use the null-conditional operator
+            OrderQty = sale?.OrderQty,
+            LineTotal = sale?.LineTotal,
+        })
+        .ToList();
+```
