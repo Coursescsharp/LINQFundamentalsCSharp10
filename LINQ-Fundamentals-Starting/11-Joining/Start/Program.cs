@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.InnerJoinMethod();
+var result = vm.InnerJoinTwoFieldsMethod();
 
 // Display Results
 vm.Display(result);
