@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.UnionIntegersMethod();
+var result = vm.UnionMethod();
 
 // Display Results
 vm.Display(result);
