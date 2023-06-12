@@ -45,3 +45,18 @@ This method allows to find all values in common between two lists (it's the oppo
 * **Union** will not give us any duplicates thar are bewtween the two list.
 * **UnionBy** will not give us any duplicates thar are bewtween the two list.
 * **Concat** will give us the duplicates thar are bewtween the two list.
+
+# Using the Join cluase to combine two collections
+
+* Perform an equijoin (inner join) between two or three collections
+    - At least one property in each collection must share equal values
+    - Using the **Join** method we need to specify the following parameters:
+        * Outer sequence -> From the query starts
+        * Inner sequence
+        * outerKeySelector 
+                            -> This two parameters are used to specify a filed whose value should be mach using lambda expression in order to include element in the result.
+        * innerKeySelector
+        * result selector -> Used to formulate the result
+
+* Create a one-to-many using group join
+* Simulate a left outer join
