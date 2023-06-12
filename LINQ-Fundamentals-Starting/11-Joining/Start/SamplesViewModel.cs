@@ -196,10 +196,10 @@
                     sales,
                     product => product.ProductID,
                     sale => sale.ProductID,
-                    (product, salesGroup) => new ProductSales
+                    (product, newSales) => new ProductSales
                     {
                         Product = product,
-                        Sales = salesGroup.OrderBy(s => s.SalesOrderID).ToList()
+                        Sales = newSales.OrderBy(s => s.SalesOrderID).ToList()
                     }
                 )
                 .ToList();
