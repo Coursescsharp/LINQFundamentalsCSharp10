@@ -39,3 +39,9 @@ list = products
 # Using Intersect()
 
 This method allows to find all values in common between two lists (it's the opposite of Excep()).
+
+# Concatenate  collections usinf Union and Concat
+
+* **Union** will not give us any duplicates thar are bewtween the two list.
+* **UnionBy** will not give us any duplicates thar are bewtween the two list.
+* **Concat** will give us the duplicates thar are bewtween the two list.
