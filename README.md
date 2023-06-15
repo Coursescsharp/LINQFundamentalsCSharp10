@@ -233,3 +233,44 @@ list = products
     .ToList();
 ```
 
+## Ordering by the 'Key' property
+
+* For the query syntax we have to use **into** and **select** to make this happen.
+
+```
+public List<IGrouping<string, Product>> GroupByUsingKeyQuery()
+{
+    List<IGrouping<string, Product>> list = null;
+    // Load all Product Data
+    List<Product> products = ProductRepository.GetAll();
+
+    // Write Query Syntax Here
+    list = (from product in products
+            group product by product.Size into sizes
+            orderby sizes.Key
+            select sizes)
+            .ToList();
+
+    return list;
+}
+```
+
+Instead, using the method expression:
+
+```
+public List<IGrouping<string, Product>> GroupByUsingKeyMethod()
+{
+    List<IGrouping<string, Product>> list = null;
+    // Load all Product Data
+    List<Product> products = ProductRepository.GetAll();
+
+    // Write Method Syntax Here
+    list = products
+        .GroupBy(product => product.Size)
+        .OrderBy(sizes => sizes.Key)
+        .Select(sizes => sizes)
+        .ToList();
+
+    return list;
+}
+```
