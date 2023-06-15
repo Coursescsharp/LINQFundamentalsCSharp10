@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.GroupByUsingKeyMethod();
+var result = vm.GroupByWhereMethod();
 
 // Display Results
 vm.Display(result);

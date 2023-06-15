@@ -118,7 +118,12 @@
             List<Product> products = ProductRepository.GetAll();
 
             // Write Query Syntax Here
-
+            list = (from product in products
+                    orderby product.Size
+                    group product by product.Size into sizes
+                    where sizes.Count() > 2
+                    select sizes)
+                    .ToList();
 
             return list;
         }
@@ -136,7 +141,12 @@
             List<Product> products = ProductRepository.GetAll();
 
             // Write Method Syntax Here
-
+            list = products
+                .OrderBy(product => product.Size)
+                .GroupBy(product => product.Size)
+                .Where(sizes => sizes.Count() > 2)
+                .Select(sizes => sizes)
+                .ToList();
 
             return list;
         }
