@@ -165,7 +165,19 @@
             List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
             // Write Query Syntax Here
-
+            list = (from sale in sales
+                    orderby sale.SalesOrderID 
+                    group sale by sale.SalesOrderID into newSales
+                    select new SaleProducts
+                    {
+                        SalesOrderID = newSales.Key,
+                        Products = (from prod in products
+                                    orderby prod.ProductID
+                                    join sale in sales on prod.ProductID equals sale.ProductID
+                                    where sale.SalesOrderID == newSales.Key
+                                    select prod).ToList(),
+                    })
+                    .ToList();
 
             return list;
         }
@@ -184,6 +196,21 @@
             List<SalesOrder> sales = SalesOrderRepository.GetAll();
 
             // Write Method Syntax Here
+            list = sales
+                .OrderBy(s => s.SalesOrderID)
+                .GroupBy(s => s.SalesOrderID)
+                .Select(newSales => new SaleProducts
+                {
+                    SalesOrderID = newSales.Key,
+                    Products = products
+                    .OrderBy(p => p.ProductID)
+                    .Join(newSales, 
+                          p => p.ProductID,
+                          sale => sale.ProductID,
+                          (p, sale) => p)
+                    .ToList()
+                })
+                .ToList();
 
 
             return list;

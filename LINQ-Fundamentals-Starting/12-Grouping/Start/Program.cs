@@ -4,7 +4,7 @@
 SamplesViewModel vm = new();
 
 // Call Sample Method
-var result = vm.GroupByWhereMethod();
+var result = vm.GroupBySubQueryMethod();
 
 // Display Results
 vm.Display(result);
